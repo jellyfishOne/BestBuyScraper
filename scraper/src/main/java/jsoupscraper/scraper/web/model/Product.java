@@ -35,14 +35,13 @@ public class Product {
 	private String productName;
 	private String productSKU;
 	
-	private String productRegularPrice;
-	private String productSavings;
-	private String productCurrentPrice;
-	
-	private boolean productOnSale;
-	private String productLowestPrice;
-	
-	@Builder.Default
-	private String productPreviousLowestPrice = null;
+	private PriceDetails priceDetails;
+	//	private String productRegularPrice;
+//	private String productSavings;
+//	private String productCurrentPrice;
+//	private boolean productOnSale;
+//	private String productLowestPrice;
+//	@Builder.Default
+//	private String productPreviousLowestPrice = null;
 	
 }

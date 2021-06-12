@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import jsoupscraper.scraper.web.model.Product;
+import jsoupscraper.scraper.web.model.PriceDetails;
 import jsoupscraper.scraper.web.repository.ProductRepository;
 import jsoupscraper.scraper.web.services.ScraperServices;
 
@@ -35,11 +36,21 @@ public class ScheduledTasks {
 		
 		for(Product product : allProducts) {
 			TimeUnit.SECONDS.sleep(1);
-			Product updatedProduct = scraperService.getProductPrice(product);
-			productRepo.save(updatedProduct);
+			PriceDetails priceDetails = scraperService.scrapeProductPriceDetails(product);
+			//check if product is on sale
+			scraperService.checkIfProductOnsale(priceDetails);
+			
+			//check lowest price
+			scraperService.checkLowestPrice(priceDetails);
+			
+			//updateProduct
+			product.setPriceDetails(priceDetails);
+			
+			//save product to mongo
+			productRepo.save(product);
 			System.out.println("*********************");
-			System.out.println(updatedProduct.getProductName());
-			System.out.println(updatedProduct.getLastUpdate());
+			System.out.println(product.getProductName());
+			System.out.println(product.getLastUpdate());
 		}
 		System.out.println("Finished Scheduled Task...");
 	}	
