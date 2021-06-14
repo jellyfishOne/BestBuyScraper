@@ -35,9 +35,6 @@ public class ScraperServicesImpl implements ScraperServices {
 			//scrape product price 
 			PriceDetails priceDetails = scrapeProductPriceDetails(product);
 			
-			//check if product is on sale
-			checkIfProductOnsale(priceDetails);
-			
 			//check lowest price
 			checkLowestPrice(priceDetails);
 			
@@ -88,11 +85,7 @@ public class ScraperServicesImpl implements ScraperServices {
 		} catch(IOException e) {
 			e.getMessage();
 		}
-		return priceDetails;
-	}
-	
-	@Override
-	public void checkIfProductOnsale( PriceDetails priceDetails) {		
+		
 		if(priceDetails.getProductSavings().isEmpty()) {
 			String newCurrentPrice = priceDetails.getProductCurrentPrice().replaceAll("[$,]", "");
 			priceDetails.setProductSavings("0");
@@ -112,7 +105,10 @@ public class ScraperServicesImpl implements ScraperServices {
 			priceDetails.setProductRegularPrice(newRegularPrice);
 			priceDetails.setProductOnSale(true);
 		}
+		
+		return priceDetails;
 	}
+	
 	
 	/*
 	 * 	Converting String to BigDecimal to calculate savings
@@ -139,6 +135,7 @@ public class ScraperServicesImpl implements ScraperServices {
 		}
 	}
 	
+	@Override
 	public void parseNameAndSkuFromUrl(Product product) {
 		//TODO validate for: site/combo/
 		//TODO validate for  bestbuy URL

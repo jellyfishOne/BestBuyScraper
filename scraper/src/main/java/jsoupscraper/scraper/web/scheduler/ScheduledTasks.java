@@ -37,8 +37,6 @@ public class ScheduledTasks {
 		for(Product product : allProducts) {
 			TimeUnit.SECONDS.sleep(1);
 			PriceDetails priceDetails = scraperService.scrapeProductPriceDetails(product);
-			//check if product is on sale
-			scraperService.checkIfProductOnsale(priceDetails);
 			
 			//check lowest price
 			scraperService.checkLowestPrice(priceDetails);

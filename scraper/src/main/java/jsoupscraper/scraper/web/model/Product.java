@@ -23,7 +23,6 @@ public class Product {
 	@Id
 	private String id;
 	
-	
 	private String productUrl;
 	
 //	@JsonFormat(pattern= "MM-dd-yyyy")
@@ -36,12 +35,4 @@ public class Product {
 	private String productSKU;
 	
 	private PriceDetails priceDetails;
-	//	private String productRegularPrice;
-//	private String productSavings;
-//	private String productCurrentPrice;
-//	private boolean productOnSale;
-//	private String productLowestPrice;
-//	@Builder.Default
-//	private String productPreviousLowestPrice = null;
-	
 }
