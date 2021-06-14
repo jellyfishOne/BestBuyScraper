@@ -24,8 +24,8 @@ public class ScraperServicesImpl implements ScraperServices {
 	ProductRepository productRepo;
 
 	@Override
-	public Product saveNewProduct(Product product) {
-		parseNameAndSkuFromUrl(product);
+	public Product saveNewProduct(String productUrl) {
+		Product product = parseNameAndSkuFromUrl(productUrl);
 		
 		//Check if SKU is already in database
 		Product checkIfProductIsSaved = productRepo.findByProductSKU(product.getProductSKU());
@@ -136,11 +136,11 @@ public class ScraperServicesImpl implements ScraperServices {
 	}
 	
 	@Override
-	public void parseNameAndSkuFromUrl(Product product) {
+	public Product parseNameAndSkuFromUrl(String productUrl) {
 		//TODO validate for: site/combo/
 		//TODO validate for  bestbuy URL
-		String productUrl = product.getProductUrl();
-		
+		Product product = new Product();
+		product.setProductUrl(productUrl);
 		int lengthOfSite = "site/".length();
 		int lastIndexOfSite = productUrl.indexOf("site/");
 		int lastIndexOfForwardSlash = productUrl.lastIndexOf("/");
@@ -148,6 +148,8 @@ public class ScraperServicesImpl implements ScraperServices {
 		
 		product.setProductName(productUrl.substring(lastIndexOfSite +lengthOfSite , lastIndexOfForwardSlash));
 		product.setProductSKU(productUrl.substring(lastIndexOfForwardSlash + 1, dot));	
+
+		return product;
 	}
 
 }

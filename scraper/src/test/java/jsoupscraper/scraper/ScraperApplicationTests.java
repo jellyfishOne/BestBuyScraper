@@ -21,33 +21,29 @@ class ScraperApplicationTests {
 	private ScraperServices scraperService;
 	
 	private String productUrl = "https://www.bestbuy.com/site/apple-airpods-pro-white/5706659.p?skuId=5706659";
-	private Product product;
-	
-	@BeforeEach
-	void setUp() throws Exception{
-		product = Product.builder().productUrl(productUrl).build();
-	}
 
 	@Test
 	void testSaveNewProduct() {
-		Product savedProduct = scraperService.saveNewProduct(product);
+		Product savedProduct = scraperService.saveNewProduct(productUrl);
 		assertNotNull(savedProduct);
 		
 	}
 	
 	@Test
 	void parseNameAndSkuFromUrl() {
-		scraperService.parseNameAndSkuFromUrl(product);
+		Product product = scraperService.parseNameAndSkuFromUrl(productUrl);
+		assertNotNull(product);
 	}
 	
 	@Test
 	void testDeleteProduct() {
-		Product savedProduct = scraperService.saveNewProduct(product);
+		Product savedProduct = scraperService.saveNewProduct(productUrl);
 		scraperService.deleteProduct(savedProduct.getId());
 	}
 	
 	@Test
 	void testScrapProductPriceDetails() {
+		Product product = Product.builder().productUrl(productUrl).build(); 
 		PriceDetails priceDetails = scraperService.scrapeProductPriceDetails(product);
 		assertNotNull(priceDetails);
 	}
@@ -64,14 +60,14 @@ class ScraperApplicationTests {
 	}
 	@Test
 	void testGetProductById() {
-		Product savedProduct = scraperService.saveNewProduct(product);
+		Product savedProduct = scraperService.saveNewProduct(productUrl);
 		Optional<Product> returnedProduct = scraperService.getProductById(savedProduct.getId());
 		assertNotNull(returnedProduct);
 	}
 	
 	@Test
 	void testCheckLowestPrice() {
-		Product savedProduct = scraperService.saveNewProduct(product);
+		Product savedProduct = scraperService.saveNewProduct(productUrl);
 		scraperService.checkLowestPrice(savedProduct.getPriceDetails());
 	}
 }

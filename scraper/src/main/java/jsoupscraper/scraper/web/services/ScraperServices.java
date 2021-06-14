@@ -7,8 +7,8 @@ import jsoupscraper.scraper.web.model.Product;
 import jsoupscraper.scraper.web.model.PriceDetails;
 
 public interface ScraperServices {
-	Product saveNewProduct(Product product);
-	void parseNameAndSkuFromUrl(Product product);
+	Product saveNewProduct(String productUrl);
+	Product parseNameAndSkuFromUrl(String productUrl);
 	PriceDetails scrapeProductPriceDetails(Product product);
 	void deleteProduct(String productId);
 	List<Product>  getAllProducts();

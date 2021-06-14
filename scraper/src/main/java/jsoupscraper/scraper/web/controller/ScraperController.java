@@ -9,10 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import jsoupscraper.scraper.web.model.Product;
@@ -34,8 +34,8 @@ public class ScraperController {
 	 * Create new product for tracking price
 	 */
 	@PostMapping(value = "/save-product")
-	public ResponseEntity saveNewProduct(@Valid @ModelAttribute Product product) {
-		Product savedProduct = scraperService.saveNewProduct(product);
+	public ResponseEntity saveNewProduct(@Valid @RequestParam(name="productUrl") String productUrl) {
+		Product savedProduct = scraperService.saveNewProduct(productUrl);
 		
 		
 		return ResponseEntity.status(HttpStatus.OK).body(savedProduct);

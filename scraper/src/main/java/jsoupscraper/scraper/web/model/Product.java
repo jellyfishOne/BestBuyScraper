@@ -2,6 +2,9 @@ package jsoupscraper.scraper.web.model;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -21,8 +24,10 @@ import lombok.NoArgsConstructor;
 public class Product {
 
 	@Id
+	@Null
 	private String id;
 	
+	@NotNull
 	private String productUrl;
 	
 //	@JsonFormat(pattern= "MM-dd-yyyy")
