@@ -24,11 +24,6 @@ public class ScheduledTasks {
 	@Autowired
 	ScraperServices scraperService;
 	
-	
-	//https://dzone.com/articles/running-on-time-with-springs-scheduled-tasks
-	//https://spring.io/blog/2020/11/10/new-in-spring-5-3-improved-cron-expressions
-	//@Scheduled(cron = "[Seconds] [Minutes] [Hours] [Day of month] [Month] [Day of week] [Year]")
-	//@Scheduled(fixedDelay = 10000)
 	@Scheduled(cron = "0 5 * * * *")
 	public void checkPrice() throws InterruptedException {
 		System.out.println("Starting Scheduled Task...");
@@ -37,15 +32,10 @@ public class ScheduledTasks {
 		for(Product product : allProducts) {
 			TimeUnit.SECONDS.sleep(1);
 			PriceDetails priceDetails = scraperService.scrapeProductPriceDetails(product);
-			
-			//check lowest price
 			scraperService.checkLowestPrice(priceDetails);
-			
-			//updateProduct
 			product.setPriceDetails(priceDetails);
-			
-			//save product to mongo
 			productRepo.save(product);
+			
 			System.out.println("*********************");
 			System.out.println(product.getProductName());
 			System.out.println(product.getLastUpdate());

@@ -28,11 +28,6 @@ public class ScraperController {
 		this.scraperService = scraperService;
 	}
 	
-	
-	/*
-	 * @The ModelAttribute annotation type binds parameters to Model objects
-	 * Create new product for tracking price
-	 */
 	@PostMapping(value = "/save-product")
 	public ResponseEntity saveNewProduct(@Valid @RequestParam(name="productUrl") String productUrl) {
 		Product savedProduct = scraperService.saveNewProduct(productUrl);

@@ -109,13 +109,6 @@ public class ScraperServicesImpl implements ScraperServices {
 		return priceDetails;
 	}
 	
-	
-	/*
-	 * 	Converting String to BigDecimal to calculate savings
-	 * 	System.out.println(new BigDecimal(135.69)); //135.68999999999999772626324556767940521240234375
-	 * 	System.out.println(new BigDecimal("135.69")); // 135.69
-	 * 	System.out.println(BigDecimal.valueOf(135.69)); // 135.69	
-	 */
 	@Override
 	public void checkLowestPrice( PriceDetails priceDetails) {
 		if(priceDetails.getProductPreviousLowestPrice() == null) {
@@ -137,8 +130,6 @@ public class ScraperServicesImpl implements ScraperServices {
 	
 	@Override
 	public Product parseNameAndSkuFromUrl(String productUrl) {
-		//TODO validate for: site/combo/
-		//TODO validate for  bestbuy URL
 		Product product = new Product();
 		product.setProductUrl(productUrl);
 		int lengthOfSite = "site/".length();
