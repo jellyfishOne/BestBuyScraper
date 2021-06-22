@@ -30,6 +30,9 @@ public class ScraperController {
 	
 	@PostMapping(value = "/save-product")
 	public ResponseEntity saveNewProduct(@Valid @RequestParam(name="productUrl") String productUrl) {
+		if(productUrl.contains("/bundle/") || productUrl.contains("/combo/" )) {
+			return ResponseEntity.status(HttpStatus.OK).body("We are not able to track combo offers at this moment. Please provide a URL for a single item.");
+		}
 		Product savedProduct = scraperService.saveNewProduct(productUrl);
 		
 		
