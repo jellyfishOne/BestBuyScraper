@@ -10,4 +10,4 @@ Tracks if a product on Bestbuy.com is on sale.
 * File -> Import -> Maven -> Existing Maven Projects -> Browse... -> select dowloaded project folder -> make sure Projects: pom.sml is selected -> Finish
 * Right click pom.xml -> Maven -> Update Project
 * Start ScraperApplication.Java 
-* Open webrouser to [localhost:8080/scraper-api](localhost:8080/scraper-api)
+* Open web browser to [localhost:8080/scraper-api](http://localhost:8080/scraper-api)
