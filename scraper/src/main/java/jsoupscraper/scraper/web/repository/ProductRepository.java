@@ -16,5 +16,8 @@ public interface ProductRepository extends MongoRepository<Product, String>{
 	List<Product> findByProductOnSale(final boolean productOnSale);
 	
 	Optional<Product> findById(String id);
+	
 	Product findByProductSKU(String sku);
+
+	void deleteByProductSKU(String productSKU);
 }

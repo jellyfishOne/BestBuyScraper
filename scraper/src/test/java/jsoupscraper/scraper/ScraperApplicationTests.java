@@ -38,7 +38,7 @@ class ScraperApplicationTests {
 	@Test
 	void testDeleteProduct() {
 		Product savedProduct = scraperService.saveNewProduct(productUrl);
-		scraperService.deleteProduct(savedProduct.getId());
+		scraperService.deleteProduct(savedProduct.getProductSKU());
 	}
 	
 	@Test

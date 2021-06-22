@@ -46,8 +46,8 @@ public class ScraperServicesImpl implements ScraperServices {
 	}
 	
 	@Override
-	public void deleteProduct(String productId) {
-		productRepo.deleteById(productId);
+	public void deleteProduct(String productSKU) {
+		productRepo.deleteByProductSKU(productSKU);
 	}
 	
 

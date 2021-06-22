@@ -39,9 +39,9 @@ public class ScraperController {
 		return ResponseEntity.status(HttpStatus.OK).body(savedProduct);
 	}
 	
-	@DeleteMapping(value = "/{productId}")
-	public ResponseEntity deleteProduct(@PathVariable String productId){
-		scraperService.deleteProduct(productId);
+	@DeleteMapping(value = "/{productSKU}")
+	public ResponseEntity deleteProduct(@PathVariable String productSKU){
+		scraperService.deleteProduct(productSKU);
 		return ResponseEntity.status(HttpStatus.OK).body("Document was deleted");
 		
 	}
