@@ -68,6 +68,11 @@ public class ScraperServicesImpl implements ScraperServices {
 	}
 	
 	@Override
+	public Product getProductBySKU(String productSKU) {
+		return productRepo.findByProductSKU(productSKU);
+	}
+	
+	@Override
 	public PriceDetails scrapeProductPriceDetails(Product product) {
 		
 		PriceDetails priceDetails = new PriceDetails();

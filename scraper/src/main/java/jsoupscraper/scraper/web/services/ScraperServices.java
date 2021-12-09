@@ -14,7 +14,6 @@ public interface ScraperServices {
 	List<Product>  getAllProducts();
 	List<Product> getProductsOnSale();
 	Optional<Product> getProductById(String productId);
+	Product getProductBySKU(String productSKU);
 	void checkLowestPrice(PriceDetails priceDetails);
-
-
 }

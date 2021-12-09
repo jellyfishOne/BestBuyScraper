@@ -53,9 +53,9 @@ public class ScraperController {
 		
 	}
 	
-	@GetMapping(value = "/{productId}")
-	public ResponseEntity getProduct(@PathVariable String productId) {
-		Optional<Product> product = scraperService.getProductById(productId);
+	@GetMapping(value = "/{productSKU}")
+	public ResponseEntity getProduct(@PathVariable String productSKU) {
+		Product product = scraperService.getProductBySKU(productSKU);
 		return ResponseEntity.status(HttpStatus.OK).body(product);
 		
 	}

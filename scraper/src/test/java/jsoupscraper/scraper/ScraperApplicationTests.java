@@ -42,7 +42,7 @@ class ScraperApplicationTests {
 	}
 	
 	@Test
-	void testScrapProductPriceDetails() {
+	void testScrapeProductPriceDetails() {
 		Product product = Product.builder().productUrl(productUrl).build(); 
 		PriceDetails priceDetails = scraperService.scrapeProductPriceDetails(product);
 		assertNotNull(priceDetails);
@@ -62,6 +62,13 @@ class ScraperApplicationTests {
 	void testGetProductById() {
 		Product savedProduct = scraperService.saveNewProduct(productUrl);
 		Optional<Product> returnedProduct = scraperService.getProductById(savedProduct.getId());
+		assertNotNull(returnedProduct);
+	}
+	
+	@Test
+	void testGetProductBySku() {
+		Product savedProduct = scraperService.saveNewProduct(productUrl);
+		Product returnedProduct = scraperService.getProductBySKU(savedProduct.getProductSKU());
 		assertNotNull(returnedProduct);
 	}
 	
