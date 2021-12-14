@@ -19,8 +19,10 @@ class ScraperApplicationTests {
 	
 	@Autowired
 	private ScraperServices scraperService;
+	private String oldProductUrl = "https://www.bestbuy.com/site/apple-airpods-pro-white/5706659.p?skuId=5706659";
+	private String updatedProductUrl = "https://www.bestbuy.com/site/apple-airpods-pro-with-magsafe-charging-case-white/4900942.p?skuId=4900942";
+	private String productUrl = updatedProductUrl;
 	
-	private String productUrl = "https://www.bestbuy.com/site/apple-airpods-pro-white/5706659.p?skuId=5706659";
 
 	@Test
 	void testSaveNewProduct() {
